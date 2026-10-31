@@ -5,9 +5,10 @@ import { PageBand } from "@/components/site/page-band";
 import { GALLERY_CATEGORIES, GALLERY_ITEMS } from "@/lib/site-data";
 
 export const Route = createFileRoute("/gallery")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    q: typeof search.q === "string" ? search.q : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>) => {
+    const q = typeof search["q"] === "string" ? search["q"] : undefined;
+    return q ? { q } : {};
+  },
   head: () => ({
     meta: [
       { title: "Gallery | WoodLand Jungle Gyms" },

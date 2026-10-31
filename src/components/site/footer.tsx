@@ -39,6 +39,7 @@ export function Footer() {
           <div className="flex justify-center lg:justify-end">
             <Link
               to="/quote"
+              search={{}}
               className="inline-flex items-center gap-1.5 rounded-full border-2 border-forest-foreground/80 px-5 py-2 text-sm font-semibold text-forest-foreground transition-colors hover:border-forest-foreground hover:bg-forest-foreground hover:text-forest"
             >
               Get a Quote

@@ -100,6 +100,7 @@ function JungleGyms() {
           </p>
           <Link
             to="/quote"
+            search={{}}
             className="mt-7 inline-flex items-center gap-2 rounded-full bg-leaf px-7 py-3 text-sm font-semibold text-leaf-foreground transition-all hover:bg-leaf/90 hover:shadow-lg"
           >
             Request a Free Consultation

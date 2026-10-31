@@ -20,7 +20,7 @@ const inputClass =
 const labelClass = "mb-1.5 block text-sm font-semibold text-foreground";
 const errorClass = "mt-1 text-xs font-medium text-destructive";
 
-export function QuoteForm({ defaultGym }: { defaultGym?: string }) {
+export function QuoteForm({ defaultGym }: { defaultGym?: string | undefined }) {
   const [errors, setErrors] = useState<FieldErrors>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);

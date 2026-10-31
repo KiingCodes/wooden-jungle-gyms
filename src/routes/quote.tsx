@@ -5,9 +5,10 @@ import { QuoteForm } from "@/components/site/quote-form";
 import { CONTACT } from "@/lib/site-data";
 
 export const Route = createFileRoute("/quote")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    gym: typeof search.gym === "string" ? search.gym : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>) => {
+    const gym = typeof search["gym"] === "string" ? search["gym"] : undefined;
+    return gym ? { gym } : {};
+  },
   head: () => ({
     meta: [
       { title: "Get a Quote | WoodLand Jungle Gyms" },

@@ -167,6 +167,7 @@ export function Header() {
           })}
           <Link
             to="/quote"
+            search={{}}
             className="mt-2 flex items-center justify-center gap-1.5 rounded-full bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground"
           >
             Get a Quote
