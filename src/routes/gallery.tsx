@@ -14,12 +14,14 @@ export const Route = createFileRoute("/gallery")({
       { title: "Gallery | WoodLand Jungle Gyms" },
       {
         name: "description",
-        content: "Browse photos of WoodLand wooden jungle gyms, playsets, towers and swing sets installed in real backyards.",
+        content:
+          "Browse photos of WoodLand wooden jungle gyms, playsets, towers and swing sets installed in real backyards.",
       },
       { property: "og:title", content: "Gallery | WoodLand Jungle Gyms" },
       {
         property: "og:description",
-        content: "Browse photos of WoodLand wooden jungle gyms, playsets, towers and swing sets installed in real backyards.",
+        content:
+          "Browse photos of WoodLand wooden jungle gyms, playsets, towers and swing sets installed in real backyards.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -39,7 +41,8 @@ function Gallery() {
     const query = q?.trim().toLowerCase();
     if (query) {
       list = list.filter(
-        (item) => item.title.toLowerCase().includes(query) || item.category.toLowerCase().includes(query),
+        (item) =>
+          item.title.toLowerCase().includes(query) || item.category.toLowerCase().includes(query),
       );
     }
     return list;
@@ -55,7 +58,8 @@ function Gallery() {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setLightbox(null);
       if (e.key === "ArrowRight") setLightbox((i) => (i === null ? null : (i + 1) % items.length));
-      if (e.key === "ArrowLeft") setLightbox((i) => (i === null ? null : (i - 1 + items.length) % items.length));
+      if (e.key === "ArrowLeft")
+        setLightbox((i) => (i === null ? null : (i - 1 + items.length) % items.length));
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -86,7 +90,11 @@ function Gallery() {
         )}
 
         {/* Filter chips */}
-        <div className="flex flex-wrap justify-center gap-2.5" role="group" aria-label="Filter gallery by category">
+        <div
+          className="flex flex-wrap justify-center gap-2.5"
+          role="group"
+          aria-label="Filter gallery by category"
+        >
           {GALLERY_CATEGORIES.map((category) => (
             <button
               key={category}
@@ -106,7 +114,9 @@ function Gallery() {
 
         {/* Grid */}
         {items.length === 0 ? (
-          <p className="py-20 text-center text-sm text-muted-foreground">No photos match this filter yet.</p>
+          <p className="py-20 text-center text-sm text-muted-foreground">
+            No photos match this filter yet.
+          </p>
         ) : (
           <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {items.map((item, index) => (
@@ -126,7 +136,9 @@ function Gallery() {
                   className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="card-shade absolute inset-0" aria-hidden />
-                <p className="absolute bottom-3 left-4 text-sm font-semibold text-white drop-shadow">{item.title}</p>
+                <p className="absolute bottom-3 left-4 text-sm font-semibold text-white drop-shadow">
+                  {item.title}
+                </p>
               </button>
             ))}
           </div>
@@ -167,7 +179,9 @@ function Gallery() {
               alt={current.title}
               className="max-h-[78vh] w-auto rounded-2xl object-contain shadow-2xl"
             />
-            <figcaption className="mt-3 text-center text-sm font-medium text-white/90">{current.title}</figcaption>
+            <figcaption className="mt-3 text-center text-sm font-medium text-white/90">
+              {current.title}
+            </figcaption>
           </figure>
           <button
             type="button"

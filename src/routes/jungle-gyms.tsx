@@ -58,8 +58,13 @@ function JungleGyms() {
                 />
               </div>
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">{category.tagline}</p>
-                <h2 id={`${category.slug}-heading`} className="mt-2 font-display text-4xl text-foreground sm:text-5xl">
+                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+                  {category.tagline}
+                </p>
+                <h2
+                  id={`${category.slug}-heading`}
+                  className="mt-2 font-display text-4xl text-foreground sm:text-5xl"
+                >
                   {category.name}
                 </h2>
                 <p className="mt-4 max-w-lg text-sm leading-relaxed text-muted-foreground sm:text-base">
@@ -96,7 +101,8 @@ function JungleGyms() {
             <span className="text-leaf">Not sure which one fits your space?</span>
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-sm text-forest-foreground/85 sm:text-base">
-            Tell us about your garden and your kids, and we'll recommend the perfect jungle gym for your family.
+            Tell us about your garden and your kids, and we'll recommend the perfect jungle gym for
+            your family.
           </p>
           <Link
             to="/quote"

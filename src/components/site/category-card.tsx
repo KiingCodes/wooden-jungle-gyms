@@ -3,7 +3,13 @@ import { Link } from "@tanstack/react-router";
 import type { Category } from "@/lib/site-data";
 
 /** Product category card matching the reference: photo, dark bottom gradient, name + circular arrow. */
-export function CategoryCard({ category, size = "default" }: { category: Category; size?: "default" | "large" }) {
+export function CategoryCard({
+  category,
+  size = "default",
+}: {
+  category: Category;
+  size?: "default" | "large";
+}) {
   return (
     <Link
       to="/jungle-gyms"
@@ -28,7 +34,10 @@ export function CategoryCard({ category, size = "default" }: { category: Categor
           className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/60 bg-white/15 text-white backdrop-blur-sm transition-all group-hover:bg-white/30"
           aria-hidden
         >
-          <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-0.5" />
+          <ArrowRight
+            size={18}
+            className="transition-transform duration-300 group-hover:translate-x-0.5"
+          />
         </span>
       </div>
     </Link>

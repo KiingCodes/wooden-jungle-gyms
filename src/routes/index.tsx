@@ -78,8 +78,8 @@ function Index() {
                 <span className="text-leaf">Lasting Memories.</span>
               </h1>
               <p className="mt-4 max-w-md text-sm leading-relaxed text-white/90 sm:text-base">
-                Beautifully crafted wooden jungle gyms, designed to inspire active play, build confidence and create
-                unforgettable childhood moments.
+                Beautifully crafted wooden jungle gyms, designed to inspire active play, build
+                confidence and create unforgettable childhood moments.
               </p>
               <Link
                 to="/jungle-gyms"
@@ -126,7 +126,10 @@ function Index() {
       </section>
 
       {/* ============ About ============ */}
-      <section aria-labelledby="about-heading" className="overflow-hidden bg-background py-4 lg:py-10">
+      <section
+        aria-labelledby="about-heading"
+        className="overflow-hidden bg-background py-4 lg:py-10"
+      >
         <div className="grid items-stretch gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)_minmax(0,0.9fr)] lg:gap-8">
           {/* Photo bleeding to the left edge on desktop */}
           <div className="overflow-hidden lg:rounded-r-3xl">
@@ -152,8 +155,8 @@ function Index() {
               It's a place for growth, adventure and joy.
             </h2>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base">
-              Our wooden jungle gyms are more than just play equipment — they're a space where kids can climb, explore,
-              imagine and grow.
+              Our wooden jungle gyms are more than just play equipment, they're a space where kids
+              can climb, explore, imagine and grow.
             </p>
             <div className="mt-7">
               <Link
@@ -172,7 +175,12 @@ function Index() {
               <ul className="flex flex-col gap-5">
                 {BENEFITS.map(({ icon: Icon, title, rest }) => (
                   <li key={title} className="flex items-start gap-3.5">
-                    <Icon size={24} strokeWidth={1.6} className="mt-0.5 shrink-0 text-forest" aria-hidden />
+                    <Icon
+                      size={24}
+                      strokeWidth={1.6}
+                      className="mt-0.5 shrink-0 text-forest"
+                      aria-hidden
+                    />
                     <p className="text-sm leading-snug text-pale-foreground">
                       <span className="font-semibold text-foreground">{title}</span>
                       <br />
@@ -199,13 +207,17 @@ function Index() {
       <section aria-labelledby="collection-heading" className="bg-background py-14 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="text-center">
-            <h2 id="collection-heading" className="font-display text-4xl text-foreground sm:text-5xl">
+            <h2
+              id="collection-heading"
+              className="font-display text-4xl text-foreground sm:text-5xl"
+            >
               <span className="mr-4 hidden h-px w-12 translate-y-[-6px] bg-primary/50 align-middle md:inline-block" />
               Our Jungle Gyms Collection
               <span className="ml-4 hidden h-px w-12 translate-y-[-6px] bg-primary/50 align-middle md:inline-block" />
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm text-muted-foreground sm:text-base">
-              From smaller backyard setups to large adventure parks, we have the perfect fit for your space and budget.
+              From smaller backyard setups to large adventure parks, we have the perfect fit for
+              your space and budget.
             </p>
           </div>
           <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">

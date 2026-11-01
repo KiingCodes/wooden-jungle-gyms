@@ -77,8 +77,8 @@ export function QuoteForm({ defaultGym }: { defaultGym?: string | undefined }) {
         <CheckCircle2 size={56} className="mx-auto text-primary" aria-hidden />
         <h2 className="mt-4 font-display text-4xl text-primary">Thank you!</h2>
         <p className="mx-auto mt-3 max-w-md text-sm text-muted-foreground">
-          Your quote request has been received. Our team will get back to you as soon as possible to discuss your
-          perfect jungle gym.
+          Your quote request has been received. Our team will get back to you as soon as possible to
+          discuss your perfect jungle gym.
         </p>
         <button
           type="button"
@@ -104,7 +104,13 @@ export function QuoteForm({ defaultGym }: { defaultGym?: string | undefined }) {
           <label htmlFor="quote-name" className={labelClass}>
             Customer Name
           </label>
-          <input id="quote-name" name="name" className={inputClass} placeholder="Your full name" required />
+          <input
+            id="quote-name"
+            name="name"
+            className={inputClass}
+            placeholder="Your full name"
+            required
+          />
           {errors.name && <p className={errorClass}>{errors.name}</p>}
         </div>
         <div>
@@ -139,7 +145,13 @@ export function QuoteForm({ defaultGym }: { defaultGym?: string | undefined }) {
           <label htmlFor="quote-gym" className={labelClass}>
             Preferred Jungle Gym
           </label>
-          <select id="quote-gym" name="preferred_gym" className={inputClass} defaultValue={defaultGym ?? ""} required>
+          <select
+            id="quote-gym"
+            name="preferred_gym"
+            className={inputClass}
+            defaultValue={defaultGym ?? ""}
+            required
+          >
             <option value="" disabled>
               Select a category…
             </option>

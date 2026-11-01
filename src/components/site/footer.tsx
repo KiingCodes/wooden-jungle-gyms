@@ -15,8 +15,19 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6">
         <div className="grid grid-cols-1 items-center gap-5 md:grid-cols-[auto_minmax(0,1fr)_auto] lg:grid-cols-[auto_auto_1fr_auto] lg:gap-8">
           {/* Logo */}
-          <Link to="/" className="flex justify-center lg:justify-start" aria-label="WoodLand Jungle Gyms home">
-            <img src={logoIcon} alt="" width={48} height={48} className="h-12 w-12 object-contain" loading="lazy" />
+          <Link
+            to="/"
+            className="flex justify-center lg:justify-start"
+            aria-label="WoodLand Jungle Gyms home"
+          >
+            <img
+              src={logoIcon}
+              alt=""
+              width={48}
+              height={48}
+              className="h-12 w-12 object-contain"
+              loading="lazy"
+            />
           </Link>
 
           {/* Slogan */}

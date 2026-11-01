@@ -37,12 +37,22 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/95 shadow-[0_1px_10px_rgba(0,0,0,0.04)] backdrop-blur supports-[backdrop-filter]:bg-background/90">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-3 sm:gap-4 sm:px-6">
         {/* Logo */}
-        <Link to="/" className="flex min-w-0 shrink-0 items-center gap-2" aria-label="WoodLand Jungle Gyms home">
-          <img src={logoIcon} alt="" width={44} height={44} className="h-11 w-11 shrink-0 object-contain" />
+        <Link
+          to="/"
+          className="flex min-w-0 shrink-0 items-center gap-1.5 sm:gap-2"
+          aria-label="WoodLand Jungle Gyms home"
+        >
+          <img
+            src={logoIcon}
+            alt=""
+            width={44}
+            height={44}
+            className="h-10 w-10 shrink-0 object-contain sm:h-11 sm:w-11"
+          />
           <span className="flex min-w-0 flex-col leading-none">
-            <span className="text-xl font-bold tracking-tight sm:text-2xl">
+            <span className="text-lg font-bold tracking-tight sm:text-2xl">
               <span className="text-wood">Wood</span>
               <span className="text-primary">Land</span>
             </span>
@@ -73,7 +83,7 @@ export function Header() {
         </nav>
 
         {/* Right actions */}
-        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
+        <div className="flex shrink-0 items-center gap-0.5 sm:gap-2">
           {/* Search */}
           <div className="relative flex items-center">
             <button
@@ -115,7 +125,9 @@ export function Header() {
             {cartOpen && (
               <div className="absolute right-0 top-full mt-2 w-56 rounded-xl border border-border bg-popover p-4 text-center shadow-lg">
                 <p className="text-sm font-semibold text-foreground">Your cart is empty</p>
-                <p className="mt-1 text-xs text-muted-foreground">Browse our jungle gyms to get started.</p>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Browse our jungle gyms to get started.
+                </p>
                 <Link
                   to="/jungle-gyms"
                   className="mt-3 inline-block rounded-full bg-primary px-4 py-1.5 text-xs font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
@@ -129,10 +141,11 @@ export function Header() {
           {/* Get a Quote */}
           <Link
             to="/quote"
-            className="hidden items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-all hover:bg-primary/90 hover:shadow-md sm:inline-flex md:px-5"
+            className="hidden min-[360px]:inline-flex items-center gap-1 rounded-full bg-primary px-2.5 py-2 text-xs font-semibold text-primary-foreground transition-all hover:bg-primary/90 hover:shadow-md sm:gap-1.5 sm:px-4 sm:text-sm md:px-5"
           >
-            Get a Quote
-            <ChevronRight size={16} />
+            <span className="sm:hidden">Quote</span>
+            <span className="hidden sm:inline">Get a Quote</span>
+            <ChevronRight size={14} className="sm:h-4 sm:w-4" />
           </Link>
 
           {/* Mobile menu toggle */}
@@ -150,7 +163,10 @@ export function Header() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <nav aria-label="Mobile" className="border-t border-border bg-background px-4 pb-4 pt-2 lg:hidden">
+        <nav
+          aria-label="Mobile"
+          className="border-t border-border bg-background px-4 pb-4 pt-2 lg:hidden"
+        >
           {NAV_LINKS.map((link) => {
             const active = isActive(pathname, link.to);
             return (
@@ -158,7 +174,9 @@ export function Header() {
                 key={link.to}
                 to={link.to}
                 className={`block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
-                  active ? "bg-accent font-semibold text-primary" : "text-foreground hover:bg-accent"
+                  active
+                    ? "bg-accent font-semibold text-primary"
+                    : "text-foreground hover:bg-accent"
                 }`}
               >
                 {link.label}

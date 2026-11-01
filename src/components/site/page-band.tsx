@@ -32,10 +32,16 @@ export function PageBand({
       />
       <div className="mx-auto max-w-3xl px-4">
         {eyebrow && (
-          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-leaf">{eyebrow}</p>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-leaf">
+            {eyebrow}
+          </p>
         )}
         <h1 className="font-display text-4xl sm:text-5xl">{title}</h1>
-        {subtitle && <p className="mx-auto mt-3 max-w-xl text-sm text-forest-foreground/85 sm:text-base">{subtitle}</p>}
+        {subtitle && (
+          <p className="mx-auto mt-3 max-w-xl text-sm text-forest-foreground/85 sm:text-base">
+            {subtitle}
+          </p>
+        )}
       </div>
     </section>
   );

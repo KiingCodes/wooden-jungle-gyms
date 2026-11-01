@@ -48,7 +48,9 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
   return (
     <div className="flex min-h-[60vh] items-center justify-center px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">This page didn't load</h1>
+        <h1 className="text-xl font-semibold tracking-tight text-foreground">
+          This page didn't load
+        </h1>
         <p className="mt-2 text-sm text-muted-foreground">
           Something went wrong on our end. You can try refreshing or head back home.
         </p>
@@ -82,7 +84,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "WoodLand Jungle Gyms" },
       { name: "description", content: "Handcrafted wooden jungle gyms, playsets and swings." },
       { property: "og:title", content: "WoodLand Jungle Gyms" },
-      { property: "og:description", content: "Handcrafted wooden jungle gyms, playsets and swings." },
+      {
+        property: "og:description",
+        content: "Handcrafted wooden jungle gyms, playsets and swings.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

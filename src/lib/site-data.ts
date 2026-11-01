@@ -7,16 +7,12 @@ import heroJungleGym from "@/assets/hero-jungle-gym.jpg";
 
 export { aboutChild, heroJungleGym };
 
-/**
- * Placeholder contact details.
- * Replace these with the real company details before going live.
- */
 export const CONTACT = {
-  phoneDisplay: "+00 000 000 0000",
-  phoneHref: "tel:+0000000000000",
-  email: "info@example.com",
-  address: "123 Example Street, Your Suburb, Your City",
-  whatsappUrl: "https://wa.me/0000000000000",
+  phoneDisplay: "+27 83 470 0443",
+  phoneHref: "tel:+27834700443",
+  email: "play@mzansijunglegyms.co.za",
+  address: "435 Aureole Ave, North Riding AH, Roodepoort, 2169",
+  whatsappUrl: "https://wa.me/27834700443",
 };
 
 export const NAV_LINKS = [
@@ -53,7 +49,12 @@ export const CATEGORIES: Category[] = [
     tagline: "For climbers and explorers",
     description:
       "Taller platforms, climbing walls and rope nets make our adventure towers the ultimate challenge for energetic kids who love to climb, scramble and conquer.",
-    features: ["Multi-level platforms", "Rock climbing wall", "Rope climbing net", "Fast slide exit"],
+    features: [
+      "Multi-level platforms",
+      "Rock climbing wall",
+      "Rope climbing net",
+      "Fast slide exit",
+    ],
   },
   {
     slug: "custom-builds",
@@ -62,7 +63,12 @@ export const CATEGORIES: Category[] = [
     tagline: "Designed around your space",
     description:
       "Have an unusual space or a big dream? We design and build custom jungle gym complexes with bridges, multiple towers and whatever your kids can imagine.",
-    features: ["Free design consultation", "Multi-tower layouts", "Connecting bridges", "Tailored to your garden"],
+    features: [
+      "Free design consultation",
+      "Multi-tower layouts",
+      "Connecting bridges",
+      "Tailored to your garden",
+    ],
   },
   {
     slug: "accessories",
@@ -71,7 +77,12 @@ export const CATEGORIES: Category[] = [
     tagline: "Add more ways to play",
     description:
       "Swings, tire swings, climbing ropes, slides and more — everything you need to extend an existing jungle gym or add fresh excitement to playtime.",
-    features: ["Belt swings & tire swings", "Slides & ladders", "Climbing ropes", "Safety surfacing"],
+    features: [
+      "Belt swings & tire swings",
+      "Slides & ladders",
+      "Climbing ropes",
+      "Safety surfacing",
+    ],
   },
 ];
 

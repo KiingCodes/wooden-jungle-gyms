@@ -29,7 +29,7 @@ const VALUES = [
   {
     icon: Hammer,
     title: "Crafted by Hand",
-    text: "Every beam, bolt and bracket is fitted by our own experienced team — never mass produced.",
+    text: "Every beam, bolt and bracket is fitted by our own experienced team, never mass produced.",
   },
   {
     icon: TreePine,
@@ -49,7 +49,7 @@ function About() {
       <PageBand
         eyebrow="Our Story"
         title="Built for Childhood"
-        subtitle="WoodLand Jungle Gyms started with one simple belief: the best memories are made outdoors, on something built with care."
+        subtitle="Mzansi Wooden Jungle Gyms was started by Abel Seleka in 2005 with one aim. To put smiles on the faces of the children of Mzansi. Since then the company has grown in leaps and bounds. Mzansi Wooden Jungle gyms have done installations at schools, parks, nurseries, restaurants and 100's of private homes and flats."
       />
 
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
@@ -72,13 +72,14 @@ function About() {
               It's a place for growth, adventure and joy.
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
-              Our wooden jungle gyms are more than just play equipment — they're a space where kids can climb, explore,
-              imagine and grow. We design each structure to challenge little adventurers at every age, while giving
-              parents complete peace of mind.
+              Our wooden jungle gyms are more than just play equipment,they're a space where kids
+              can climb, explore, imagine and grow. We design each structure to challenge little
+              adventurers at every age, while giving parents complete peace of mind.
             </p>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
-              From compact classic playsets to sprawling custom adventure complexes, every WoodLand build is
-              handcrafted, safety checked and installed with pride — bringing the adventure straight to your doorstep.
+              Whether you have a cosy backyard or room for a grand adventure, we create play spaces
+              to suit your family. Each one is thoughtfully crafted, carefully safety-checked and
+              ready to make outdoor memories for years to come.
             </p>
           </div>
         </div>

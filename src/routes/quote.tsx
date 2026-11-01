@@ -14,12 +14,14 @@ export const Route = createFileRoute("/quote")({
       { title: "Get a Quote | WoodLand Jungle Gyms" },
       {
         name: "description",
-        content: "Request a free quote for your WoodLand wooden jungle gym — tailored to your space, your style and your kids.",
+        content:
+          "Request a free quote for your WoodLand wooden jungle gym tailored to your space, your style and your kids.",
       },
       { property: "og:title", content: "Get a Quote | WoodLand Jungle Gyms" },
       {
         property: "og:description",
-        content: "Request a free quote for your WoodLand wooden jungle gym — tailored to your space, your style and your kids.",
+        content:
+          "Request a free quote for your WoodLand wooden jungle gym tailored to your space, your style and your kids.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
