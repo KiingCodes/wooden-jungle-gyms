@@ -18,6 +18,7 @@ export const CONTACT = {
 export const NAV_LINKS = [
   { to: "/", label: "Home" },
   { to: "/jungle-gyms", label: "Our Jungle Gyms" },
+  { to: "/specials", label: "Special Offers" },
   { to: "/gallery", label: "Gallery" },
   { to: "/about", label: "About Us" },
   { to: "/contact", label: "Contact" },

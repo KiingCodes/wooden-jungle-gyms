@@ -11,10 +11,12 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as JungleGymsRouteImport } from './routes/jungle-gyms'
 import { Route as QuoteRouteImport } from './routes/quote'
+import { Route as SpecialsRouteImport } from './routes/specials'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -24,6 +26,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -46,55 +53,85 @@ const QuoteRoute = QuoteRouteImport.update({
   path: '/quote',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SpecialsRoute = SpecialsRouteImport.update({
+  id: '/specials',
+  path: '/specials',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/jungle-gyms': typeof JungleGymsRoute
   '/quote': typeof QuoteRoute
+  '/specials': typeof SpecialsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/jungle-gyms': typeof JungleGymsRoute
   '/quote': typeof QuoteRoute
+  '/specials': typeof SpecialsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/jungle-gyms': typeof JungleGymsRoute
   '/quote': typeof QuoteRoute
+  '/specials': typeof SpecialsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/about' | '/contact' | '/gallery' | '/jungle-gyms' | '/quote'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/gallery' | '/jungle-gyms' | '/quote'
-  id:
-    | '__root__'
     | '/'
     | '/about'
+    | '/admin'
     | '/contact'
     | '/gallery'
     | '/jungle-gyms'
     | '/quote'
+    | '/specials'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/about'
+    | '/admin'
+    | '/contact'
+    | '/gallery'
+    | '/jungle-gyms'
+    | '/quote'
+    | '/specials'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/admin'
+    | '/contact'
+    | '/gallery'
+    | '/jungle-gyms'
+    | '/quote'
+    | '/specials'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AdminRoute: typeof AdminRoute
   ContactRoute: typeof ContactRoute
   GalleryRoute: typeof GalleryRoute
   JungleGymsRoute: typeof JungleGymsRoute
   QuoteRoute: typeof QuoteRoute
+  SpecialsRoute: typeof SpecialsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -111,6 +148,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -141,16 +185,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof QuoteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/specials': {
+      id: '/specials'
+      path: '/specials'
+      fullPath: '/specials'
+      preLoaderRoute: typeof SpecialsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AdminRoute: AdminRoute,
   ContactRoute: ContactRoute,
   GalleryRoute: GalleryRoute,
   JungleGymsRoute: JungleGymsRoute,
   QuoteRoute: QuoteRoute,
+  SpecialsRoute: SpecialsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

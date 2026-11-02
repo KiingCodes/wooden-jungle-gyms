@@ -9,7 +9,16 @@ import { routeTree } from "@/routeTree.gen";
 describe("App routing", () => {
   it("matches every primary page instead of falling back to not found", () => {
     const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
-    const paths = ["/", "/jungle-gyms", "/gallery", "/about", "/contact", "/quote"];
+    const paths = [
+      "/",
+      "/jungle-gyms",
+      "/specials",
+      "/admin",
+      "/gallery",
+      "/about",
+      "/contact",
+      "/quote",
+    ];
 
     for (const path of paths) {
       const matches = router.matchRoutes(path);

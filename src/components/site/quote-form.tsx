@@ -160,6 +160,9 @@ export function QuoteForm({ defaultGym }: { defaultGym?: string | undefined }) {
                 {c.name}
               </option>
             ))}
+            {defaultGym && !CATEGORIES.some((category) => category.name === defaultGym) && (
+              <option value={defaultGym}>{defaultGym}</option>
+            )}
             <option value="Not sure yet">Not sure yet — advise me</option>
           </select>
           {errors.preferred_gym && <p className={errorClass}>{errors.preferred_gym}</p>}

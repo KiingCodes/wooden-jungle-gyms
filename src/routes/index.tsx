@@ -12,6 +12,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { CategoryCard } from "@/components/site/category-card";
+import { HomeSpecialOffers } from "@/components/site/special-offers";
 import { CATEGORIES, aboutChild, heroJungleGym } from "@/lib/site-data";
 import leafDecor from "@/assets/leaf-decor.png";
 
@@ -124,6 +125,8 @@ function Index() {
           </div>
         </div>
       </section>
+
+      <HomeSpecialOffers />
 
       {/* ============ About ============ */}
       <section
