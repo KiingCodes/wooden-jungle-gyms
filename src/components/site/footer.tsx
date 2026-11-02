@@ -1,5 +1,5 @@
 import logoIcon from "@/assets/logo-icon.png";
-import { Leaf, ShieldCheck, Truck } from "lucide-react";
+import { Leaf, LockKeyhole, ShieldCheck, Truck } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { ChevronRight } from "lucide-react";
 
@@ -60,9 +60,16 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-forest-foreground/15">
-        <p className="mx-auto max-w-7xl px-4 py-3 text-center text-xs text-forest-foreground/60 sm:px-6">
-          © {new Date().getFullYear()} Mzansi Jungle Gyms. All rights reserved.
-        </p>
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-3 text-xs text-forest-foreground/60 sm:flex-row sm:px-6">
+          <p>© {new Date().getFullYear()} Mzansi Jungle Gyms. All rights reserved.</p>
+          <Link
+            to="/admin"
+            className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 transition-colors hover:bg-forest-foreground/10 hover:text-forest-foreground"
+          >
+            <LockKeyhole size={13} aria-hidden />
+            Admin sign-in
+          </Link>
+        </div>
       </div>
     </footer>
   );
