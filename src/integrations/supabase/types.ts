@@ -14,60 +14,6 @@ export type Database = {
   }
   public: {
     Tables: {
-      admin_users: {
-        Row: {
-          email: string
-        }
-        Insert: {
-          email: string
-        }
-        Update: {
-          email?: string
-        }
-        Relationships: []
-      }
-      special_offers: {
-        Row: {
-          created_at: string
-          description: string
-          ends_at: string | null
-          id: string
-          image_path: string
-          is_published: boolean
-          regular_price: number
-          special_price: number
-          starts_at: string | null
-          title: string
-          updated_at: string
-        }
-        Insert: {
-          created_at?: string
-          description: string
-          ends_at?: string | null
-          id?: string
-          image_path: string
-          is_published?: boolean
-          regular_price: number
-          special_price: number
-          starts_at?: string | null
-          title: string
-          updated_at?: string
-        }
-        Update: {
-          created_at?: string
-          description?: string
-          ends_at?: string | null
-          id?: string
-          image_path?: string
-          is_published?: boolean
-          regular_price?: number
-          special_price?: number
-          starts_at?: string | null
-          title?: string
-          updated_at?: string
-        }
-        Relationships: []
-      }
       quote_requests: {
         Row: {
           created_at: string
