@@ -6,17 +6,17 @@ import { heroJungleGym } from "@/lib/site-data";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Us | WoodLand Jungle Gyms" },
+      { title: "About Us | Mzansi Jungle Gyms" },
       {
         name: "description",
         content:
-          "Learn the story behind WoodLand Jungle Gyms — handcrafted wooden play equipment that brings families together outdoors.",
+          "Learn the story behind Mzansi Jungle Gyms — handcrafted wooden play equipment that brings families together outdoors.",
       },
-      { property: "og:title", content: "About Us | WoodLand Jungle Gyms" },
+      { property: "og:title", content: "About Us | Mzansi Jungle Gyms" },
       {
         property: "og:description",
         content:
-          "Learn the story behind WoodLand Jungle Gyms — handcrafted wooden play equipment that brings families together outdoors.",
+          "Learn the story behind Mzansi Jungle Gyms — handcrafted wooden play equipment that brings families together outdoors.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -57,7 +57,7 @@ function About() {
           <div className="overflow-hidden rounded-3xl shadow-md">
             <img
               src={heroJungleGym}
-              alt="A WoodLand wooden jungle gym in a green backyard"
+              alt="A Mzansi wooden jungle gym in a green backyard"
               width={1920}
               height={1088}
               loading="lazy"

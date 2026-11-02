@@ -42,7 +42,7 @@ export function Header() {
         <Link
           to="/"
           className="flex min-w-0 shrink-0 items-center gap-1.5 sm:gap-2"
-          aria-label="WoodLand Jungle Gyms home"
+          aria-label="Mzansi Jungle Gyms home"
         >
           <img
             src={logoIcon}
@@ -53,8 +53,7 @@ export function Header() {
           />
           <span className="flex min-w-0 flex-col leading-none">
             <span className="text-lg font-bold tracking-tight sm:text-2xl">
-              <span className="text-wood">Wood</span>
-              <span className="text-primary">Land</span>
+              <span className="text-wood">Mzansi</span>
             </span>
             <span className="mt-0.5 text-[0.55rem] font-semibold uppercase tracking-[0.35em] text-foreground/70">
               Jungle Gyms
