@@ -6,13 +6,13 @@ import { CATEGORIES } from "@/lib/site-data";
 export const Route = createFileRoute("/jungle-gyms")({
   head: () => ({
     meta: [
-      { title: "Our Jungle Gyms | WoodLand Jungle Gyms" },
+      { title: "Our Jungle Gyms | Mzansi Jungle Gyms" },
       {
         name: "description",
         content:
           "Explore our range of handcrafted wooden jungle gyms: classic playsets, adventure towers, custom builds and accessories.",
       },
-      { property: "og:title", content: "Our Jungle Gyms | WoodLand Jungle Gyms" },
+      { property: "og:title", content: "Our Jungle Gyms | Mzansi Jungle Gyms" },
       {
         property: "og:description",
         content:
@@ -31,7 +31,7 @@ function JungleGyms() {
       <PageBand
         eyebrow="Our Range"
         title="Our Jungle Gyms"
-        subtitle="Every WoodLand jungle gym is handcrafted from premium, treated timber and built to keep kids playing safely for years."
+        subtitle="Every Mzansi jungle gym is handcrafted from premium, treated timber and built to keep kids playing safely for years."
       />
 
       <div className="mx-auto max-w-6xl px-4 sm:px-6">

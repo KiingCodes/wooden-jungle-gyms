@@ -42,7 +42,7 @@ export function Header() {
         <Link
           to="/"
           className="flex min-w-0 shrink-0 items-center gap-1.5 sm:gap-2"
-          aria-label="WoodLand Jungle Gyms home"
+          aria-label="Mzansi Jungle Gyms home"
         >
           <img
             src={logoIcon}

@@ -19,14 +19,14 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       {
-        title: "WoodLand Jungle Gyms | Wooden Jungle Gyms, Playsets & Swings",
+        title: "Mzansi Jungle Gyms | Wooden Jungle Gyms, Playsets & Swings",
       },
       {
         name: "description",
         content:
           "Beautifully crafted wooden jungle gyms designed to inspire active play, build confidence and create unforgettable childhood moments.",
       },
-      { property: "og:title", content: "WoodLand Jungle Gyms | Real Play. Lasting Memories." },
+      { property: "og:title", content: "Mzansi Jungle Gyms | Real Play. Lasting Memories." },
       {
         property: "og:description",
         content:
@@ -106,7 +106,7 @@ function Index() {
       </section>
 
       {/* ============ Features strip ============ */}
-      <section aria-label="Why choose WoodLand" className="-mt-11 bg-cream pb-14 pt-14 sm:-mt-12">
+      <section aria-label="Why choose Mzansi" className="-mt-11 bg-cream pb-14 pt-14 sm:-mt-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-0 lg:grid-cols-4">
             {FEATURES.map(({ icon: Icon, title, text }, i) => (

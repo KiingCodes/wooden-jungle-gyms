@@ -18,7 +18,7 @@ export function Footer() {
           <Link
             to="/"
             className="flex justify-center lg:justify-start"
-            aria-label="WoodLand Jungle Gyms home"
+            aria-label="Mzansi Jungle Gyms home"
           >
             <img
               src={logoIcon}
@@ -61,7 +61,7 @@ export function Footer() {
       </div>
       <div className="border-t border-forest-foreground/15">
         <p className="mx-auto max-w-7xl px-4 py-3 text-center text-xs text-forest-foreground/60 sm:px-6">
-          © {new Date().getFullYear()} WoodLand Jungle Gyms. All rights reserved.
+          © {new Date().getFullYear()} Mzansi Jungle Gyms. All rights reserved.
         </p>
       </div>
     </footer>

@@ -81,9 +81,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "WoodLand Jungle Gyms" },
+      { title: "Mzansi Jungle Gyms" },
       { name: "description", content: "Handcrafted wooden jungle gyms, playsets and swings." },
-      { property: "og:title", content: "WoodLand Jungle Gyms" },
+      { property: "og:title", content: "Mzansi Jungle Gyms" },
       {
         property: "og:description",
         content: "Handcrafted wooden jungle gyms, playsets and swings.",
