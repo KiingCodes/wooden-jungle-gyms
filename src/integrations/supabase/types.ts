@@ -26,6 +26,39 @@ export type Database = {
         }
         Relationships: []
       }
+      quote_requests: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          location: string
+          name: string
+          phone: string
+          preferred_gym: string
+          requirements: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          location: string
+          name: string
+          phone: string
+          preferred_gym: string
+          requirements?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          location?: string
+          name?: string
+          phone?: string
+          preferred_gym?: string
+          requirements?: string | null
+        }
+        Relationships: []
+      }
       special_offers: {
         Row: {
           created_at: string
@@ -65,39 +98,6 @@ export type Database = {
           starts_at?: string | null
           title?: string
           updated_at?: string
-        }
-        Relationships: []
-      }
-      quote_requests: {
-        Row: {
-          created_at: string
-          email: string
-          id: string
-          location: string
-          name: string
-          phone: string
-          preferred_gym: string
-          requirements: string | null
-        }
-        Insert: {
-          created_at?: string
-          email: string
-          id?: string
-          location: string
-          name: string
-          phone: string
-          preferred_gym: string
-          requirements?: string | null
-        }
-        Update: {
-          created_at?: string
-          email?: string
-          id?: string
-          location?: string
-          name?: string
-          phone?: string
-          preferred_gym?: string
-          requirements?: string | null
         }
         Relationships: []
       }
