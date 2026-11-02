@@ -3,6 +3,11 @@
 The public offers page and admin dashboard use Supabase Auth, the `special_offers`
 table, and the `special-offer-images` Storage bucket.
 
+Existing installations should apply any unapplied migration in
+`migrations/`, including `20261102000200_special_offer_multiple_images.sql`,
+before using the multi-photo editor. It adds `images` and copies each existing
+`image_path` into the array so current offer photos remain intact.
+
 ## One-time setup
 
 1. Apply `migrations/20261102000100_special_offers.sql` to the Supabase project

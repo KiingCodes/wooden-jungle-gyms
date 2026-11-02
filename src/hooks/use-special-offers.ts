@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { isOfferInDateRange, type SpecialOffer } from "@/lib/special-offers";
+import { getOfferImagePaths, isOfferInDateRange, type SpecialOffer } from "@/lib/special-offers";
 
 type OfferLoadState = {
   offers: SpecialOffer[];
@@ -30,11 +30,19 @@ export function useSpecialOffers(): OfferLoadState {
           return;
         }
         setState({
-          offers: (data ?? []).filter(isOfferInDateRange).map((offer) => ({
-            ...offer,
-            image_url: supabase.storage.from("special-offer-images").getPublicUrl(offer.image_path)
-              .data.publicUrl,
-          })),
+          offers: (data ?? []).filter(isOfferInDateRange).map((offer) => {
+            const images = getOfferImagePaths(offer);
+            const imageUrls = images.map(
+              (path) =>
+                supabase.storage.from("special-offer-images").getPublicUrl(path).data.publicUrl,
+            );
+            return {
+              ...offer,
+              images,
+              image_urls: imageUrls,
+              image_url: imageUrls[0] ?? "",
+            };
+          }),
           loading: false,
           error: null,
         });

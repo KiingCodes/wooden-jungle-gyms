@@ -7,6 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import {
   discountPercent,
   formatZar,
+  getOfferImagePaths,
   isOfferInDateRange,
   southAfricanDateKey,
   type SpecialOffer,
@@ -27,8 +28,8 @@ type OfferDraft = {
   startsAt: string;
   endsAt: string;
   isPublished: boolean;
-  imagePath: string;
-  imageFile: File | null;
+  imagePaths: string[];
+  imageFiles: File[];
 };
 
 function emptyDraft(): OfferDraft {
@@ -40,8 +41,8 @@ function emptyDraft(): OfferDraft {
     startsAt: "",
     endsAt: "",
     isPublished: false,
-    imagePath: "",
-    imageFile: null,
+    imagePaths: [],
+    imageFiles: [],
   };
 }
 
@@ -54,8 +55,8 @@ function draftFromOffer(offer: SpecialOffer): OfferDraft {
     startsAt: offer.starts_at ?? "",
     endsAt: offer.ends_at ?? "",
     isPublished: offer.is_published,
-    imagePath: offer.image_path,
-    imageFile: null,
+    imagePaths: getOfferImagePaths(offer),
+    imageFiles: [],
   };
 }
 
@@ -88,7 +89,7 @@ function Admin() {
   const [formMessage, setFormMessage] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [imagePreviews, setImagePreviews] = useState<string[]>([]);
 
   useEffect(() => {
     let active = true;
@@ -188,14 +189,14 @@ function Admin() {
   }, [access]);
 
   useEffect(() => {
-    if (!draft?.imageFile) {
-      setImagePreview(null);
+    if (!draft?.imageFiles.length) {
+      setImagePreviews([]);
       return;
     }
-    const preview = URL.createObjectURL(draft.imageFile);
-    setImagePreview(preview);
-    return () => URL.revokeObjectURL(preview);
-  }, [draft?.imageFile]);
+    const previews = draft.imageFiles.map((file) => URL.createObjectURL(file));
+    setImagePreviews(previews);
+    return () => previews.forEach((preview) => URL.revokeObjectURL(preview));
+  }, [draft?.imageFiles]);
 
   async function handleSignIn(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -289,53 +290,59 @@ function Admin() {
       setFormError("The end date must be on or after the start date.");
       return;
     }
-    if (!draft.imagePath && !draft.imageFile) {
-      setFormError("Choose a product image before saving.");
+    if (draft.imagePaths.length + draft.imageFiles.length < 2) {
+      setFormError("Add at least two product photos to create a special offer.");
       return;
     }
     if (
-      draft.imageFile &&
-      (!ACCEPTED_IMAGE_TYPES.includes(draft.imageFile.type) ||
-        draft.imageFile.size > MAX_IMAGE_SIZE)
+      draft.imageFiles.some(
+        (file) => !ACCEPTED_IMAGE_TYPES.includes(file.type) || file.size > MAX_IMAGE_SIZE,
+      )
     ) {
-      setFormError("Choose a JPG, PNG or WebP image smaller than 8 MB.");
+      setFormError("Each photo must be JPG, PNG or WebP and smaller than 8 MB.");
       return;
     }
 
     setSaving(true);
-    let uploadedPath: string | null = null;
-    let imagePath = draft.imagePath;
-    if (draft.imageFile) {
-      const extensionByType: Record<string, string> = {
-        "image/jpeg": "jpg",
-        "image/png": "png",
-        "image/webp": "webp",
-      };
-      uploadedPath = `${session.user.id}/${crypto.randomUUID()}.${extensionByType[draft.imageFile.type]}`;
-      const { error } = await supabase.storage
-        .from(IMAGE_BUCKET)
-        .upload(uploadedPath, draft.imageFile, {
-          cacheControl: "3600",
-          contentType: draft.imageFile.type,
-          upsert: false,
-        });
+    const uploadedPaths: string[] = [];
+    const extensionByType: Record<string, string> = {
+      "image/jpeg": "jpg",
+      "image/png": "png",
+      "image/webp": "webp",
+    };
+    for (const file of draft.imageFiles) {
+      const path = `${session.user.id}/${crypto.randomUUID()}.${extensionByType[file.type]}`;
+      const { error } = await supabase.storage.from(IMAGE_BUCKET).upload(path, file, {
+        cacheControl: "3600",
+        contentType: file.type,
+        upsert: false,
+      });
       if (error) {
         setSaving(false);
+        const cleanup = uploadedPaths.length
+          ? await supabase.storage.from(IMAGE_BUCKET).remove(uploadedPaths)
+          : { error: null };
         setFormError(
-          "The image couldn't be uploaded. Please try a smaller JPG, PNG or WebP image.",
+          cleanup.error
+            ? "A photo upload failed, and some uploaded photos could not be cleaned up."
+            : "A photo upload failed. Please try again with JPG, PNG or WebP photos smaller than 8 MB.",
         );
         console.error("Could not upload special-offer image:", error);
+        if (cleanup.error)
+          console.error("Could not clean up offer images after failed upload:", cleanup.error);
         return;
       }
-      imagePath = uploadedPath;
+      uploadedPaths.push(path);
     }
+    const imagePaths = [...draft.imagePaths, ...uploadedPaths];
 
     const offerValues = {
       title: draft.title.trim(),
       description: draft.description.trim(),
       regular_price: regularPrice,
       special_price: specialPrice,
-      image_path: imagePath,
+      image_path: imagePaths[0],
+      images: imagePaths,
       is_published: draft.isPublished,
       starts_at: draft.startsAt || null,
       ends_at: draft.endsAt || null,
@@ -353,8 +360,8 @@ function Admin() {
     if (result.error) {
       setSaving(false);
       let cleanupMessage = "";
-      if (uploadedPath) {
-        const cleanup = await supabase.storage.from(IMAGE_BUCKET).remove([uploadedPath]);
+      if (uploadedPaths.length) {
+        const cleanup = await supabase.storage.from(IMAGE_BUCKET).remove(uploadedPaths);
         if (cleanup.error) {
           cleanupMessage = " The uploaded image also needs manual cleanup.";
           console.error("Could not remove unused special-offer image:", cleanup.error);
@@ -365,7 +372,7 @@ function Admin() {
       return;
     }
 
-    const oldImagePath = offers.find((offer) => offer.id === editingId)?.image_path;
+    const oldOffer = offers.find((offer) => offer.id === editingId);
     setOffers((current) => [
       result.data,
       ...current.filter((offer) => offer.id !== result.data.id),
@@ -373,8 +380,11 @@ function Admin() {
     setSaving(false);
     setEditingId(null);
     setDraft(null);
-    if (uploadedPath && oldImagePath && uploadedPath !== oldImagePath) {
-      const cleanup = await supabase.storage.from(IMAGE_BUCKET).remove([oldImagePath]);
+    const removedPaths = oldOffer
+      ? getOfferImagePaths(oldOffer).filter((path) => !imagePaths.includes(path))
+      : [];
+    if (removedPaths.length) {
+      const cleanup = await supabase.storage.from(IMAGE_BUCKET).remove(removedPaths);
       if (cleanup.error) {
         setFormMessage("The offer was saved, but its previous image could not be removed.");
         console.error("Could not remove replaced special-offer image:", cleanup.error);
@@ -399,7 +409,7 @@ function Admin() {
       return;
     }
     setOffers((current) => current.filter((item) => item.id !== offer.id));
-    const cleanup = await supabase.storage.from(IMAGE_BUCKET).remove([offer.image_path]);
+    const cleanup = await supabase.storage.from(IMAGE_BUCKET).remove(getOfferImagePaths(offer));
     setDeletingId(null);
     if (cleanup.error) {
       setFormMessage("The offer was deleted, but its image could not be removed.");
@@ -646,8 +656,9 @@ function Admin() {
                     >
                       <img
                         src={
-                          supabase.storage.from(IMAGE_BUCKET).getPublicUrl(offer.image_path).data
-                            .publicUrl
+                          supabase.storage
+                            .from(IMAGE_BUCKET)
+                            .getPublicUrl(getOfferImagePaths(offer)[0]).data.publicUrl
                         }
                         alt=""
                         className="h-28 w-full rounded-xl object-cover sm:w-36"
@@ -757,12 +768,19 @@ function Admin() {
                     id="offer-description"
                     required
                     maxLength={2000}
-                    rows={4}
+                    rows={7}
                     value={draft.description}
                     onChange={(event) => setDraft({ ...draft, description: event.target.value })}
-                    placeholder="What makes this jungle gym special?"
+                    placeholder={
+                      "The perfect backyard adventure:\n• Raised play deck with timber roof\n• Wave slide and climbing wall\n\nWhat's included:\n- Professional installation"
+                    }
                     className={`${inputClass} resize-y`}
                   />
+                  <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
+                    Use a new line for each detail. Start bullet points with • or -, and add a
+                    section heading with a colon (for example, What's included:). Blank lines
+                    separate sections.
+                  </p>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div>
@@ -827,41 +845,91 @@ function Admin() {
                 </div>
                 <div>
                   <label htmlFor="offer-image" className={labelClass}>
-                    Product photo
+                    Product photos
                   </label>
-                  <label
-                    htmlFor="offer-image"
-                    className="flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-primary/25 bg-cream p-4 text-center transition-colors hover:border-primary/60"
-                  >
-                    {imagePreview || draft.imagePath ? (
-                      <img
-                        src={
-                          imagePreview ??
-                          supabase.storage.from(IMAGE_BUCKET).getPublicUrl(draft.imagePath).data
-                            .publicUrl
-                        }
-                        alt="Selected offer preview"
-                        className="mb-3 max-h-48 w-full rounded-xl object-cover"
-                      />
-                    ) : (
-                      <Upload size={24} className="mb-2 text-primary" aria-hidden />
+                  <div className="rounded-2xl border-2 border-dashed border-primary/25 bg-cream p-4">
+                    {(draft.imagePaths.length > 0 || draft.imageFiles.length > 0) && (
+                      <div className="mb-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                        {draft.imagePaths.map((path, index) => (
+                          <div key={path} className="group relative">
+                            <img
+                              src={
+                                supabase.storage.from(IMAGE_BUCKET).getPublicUrl(path).data
+                                  .publicUrl
+                              }
+                              alt={`Offer photo ${index + 1}`}
+                              className="aspect-square w-full rounded-xl object-cover"
+                            />
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setDraft({
+                                  ...draft,
+                                  imagePaths: draft.imagePaths.filter(
+                                    (_, itemIndex) => itemIndex !== index,
+                                  ),
+                                })
+                              }
+                              aria-label={`Remove offer photo ${index + 1}`}
+                              className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full bg-background/90 text-destructive shadow hover:bg-background"
+                            >
+                              <Trash2 size={14} aria-hidden />
+                            </button>
+                          </div>
+                        ))}
+                        {draft.imageFiles.map((file, index) => (
+                          <div key={`${file.name}-${index}`} className="group relative">
+                            <img
+                              src={imagePreviews[index]}
+                              alt={`New offer photo ${draft.imagePaths.length + index + 1}`}
+                              className="aspect-square w-full rounded-xl object-cover"
+                            />
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setDraft({
+                                  ...draft,
+                                  imageFiles: draft.imageFiles.filter(
+                                    (_, itemIndex) => itemIndex !== index,
+                                  ),
+                                })
+                              }
+                              aria-label={`Remove new offer photo ${index + 1}`}
+                              className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full bg-background/90 text-destructive shadow hover:bg-background"
+                            >
+                              <Trash2 size={14} aria-hidden />
+                            </button>
+                          </div>
+                        ))}
+                      </div>
                     )}
-                    <span className="text-sm font-semibold text-foreground">Choose an image</span>
-                    <span className="mt-1 text-xs text-muted-foreground">
-                      JPG, PNG or WebP · up to 8 MB
-                    </span>
-                    <input
-                      id="offer-image"
-                      type="file"
-                      accept="image/jpeg,image/png,image/webp"
-                      className="sr-only"
-                      onChange={(event) => {
-                        const file = event.target.files?.[0] ?? null;
-                        if (file) setDraft({ ...draft, imageFile: file });
-                        event.currentTarget.value = "";
-                      }}
-                    />
-                  </label>
+                    <label
+                      htmlFor="offer-image"
+                      className="flex cursor-pointer flex-col items-center justify-center rounded-xl p-3 text-center transition-colors hover:bg-background/70"
+                    >
+                      <Upload size={24} className="mb-2 text-primary" aria-hidden />
+                      <span className="text-sm font-semibold text-foreground">
+                        Choose multiple photos
+                      </span>
+                      <span className="mt-1 text-xs text-muted-foreground">
+                        JPG, PNG or WebP · up to 8 MB each · at least 2 photos required
+                      </span>
+                      <input
+                        id="offer-image"
+                        type="file"
+                        multiple
+                        accept="image/jpeg,image/png,image/webp"
+                        className="sr-only"
+                        onChange={(event) => {
+                          const files = Array.from(event.target.files ?? []);
+                          if (files.length > 0) {
+                            setDraft({ ...draft, imageFiles: [...draft.imageFiles, ...files] });
+                          }
+                          event.currentTarget.value = "";
+                        }}
+                      />
+                    </label>
+                  </div>
                 </div>
                 <label className="flex cursor-pointer items-start gap-3 rounded-xl bg-pale/60 p-4">
                   <input

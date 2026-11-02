@@ -5,12 +5,59 @@ export interface SpecialOffer {
   regular_price: number;
   special_price: number;
   image_path: string;
+  images: string[];
   image_url: string;
+  image_urls: string[];
   is_published: boolean;
   starts_at: string | null;
   ends_at: string | null;
   created_at: string;
   updated_at: string;
+}
+
+export type DescriptionBlock =
+  | { type: "heading"; text: string }
+  | { type: "paragraph"; text: string }
+  | { type: "list"; items: string[] };
+
+export function parseOfferDescription(description: string): DescriptionBlock[] {
+  const blocks: DescriptionBlock[] = [];
+  let listItems: string[] = [];
+
+  const flushList = () => {
+    if (listItems.length > 0) {
+      blocks.push({ type: "list", items: listItems });
+      listItems = [];
+    }
+  };
+
+  for (const rawLine of description.replace(/\r\n?/g, "\n").split("\n")) {
+    const line = rawLine.trim();
+    if (!line) {
+      flushList();
+      continue;
+    }
+
+    const bullet = line.match(/^(?:[•*-])\s+(.+)$/);
+    if (bullet) {
+      listItems.push(bullet[1]);
+      continue;
+    }
+
+    flushList();
+    const heading = line.match(/^#{1,3}\s+(.+)$/) ?? line.match(/^(.+):$/);
+    blocks.push(
+      heading ? { type: "heading", text: heading[1] } : { type: "paragraph", text: line },
+    );
+  }
+
+  flushList();
+  return blocks;
+}
+
+export function getOfferImagePaths(offer: Pick<SpecialOffer, "images" | "image_path">): string[] {
+  const paths = offer.images?.length ? offer.images : [offer.image_path];
+  return [...new Set(paths.filter(Boolean))];
 }
 
 export function formatZar(amount: number): string {
