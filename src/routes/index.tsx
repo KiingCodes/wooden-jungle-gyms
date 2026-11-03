@@ -61,10 +61,10 @@ function Index() {
       <section className="relative">
         <img
           src={heroJungleGym}
-          alt="Children playing on a wooden jungle gym with a green slide and swings in a lush backyard"
-          width={1920}
-          height={1088}
-          className="h-[420px] w-full object-cover object-right sm:h-[400px] lg:h-[420px]"
+          alt="Colourful jungle gym with swings, slides and a climbing ladder on a sunny playground"
+          width={1600}
+          height={1200}
+          className="h-[420px] w-full object-cover object-center sm:h-[400px] lg:h-[420px]"
         />
         <div className="hero-shade absolute inset-0" aria-hidden />
         <div className="absolute inset-0 flex items-center">
