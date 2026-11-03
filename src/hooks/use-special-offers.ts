@@ -1,12 +1,31 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { getOfferImagePaths, isOfferInDateRange, type SpecialOffer } from "@/lib/special-offers";
+import {
+  getOfferImagePaths,
+  isOfferInDateRange,
+  type SpecialOffer,
+  type SpecialOfferRow,
+} from "@/lib/special-offers";
 
 type OfferLoadState = {
   offers: SpecialOffer[];
   loading: boolean;
   error: string | null;
 };
+
+/** Turns a raw `special_offers` row into a SpecialOffer with public image URLs. */
+export function withOfferImageUrls(offer: SpecialOfferRow): SpecialOffer {
+  const images = getOfferImagePaths(offer);
+  const imageUrls = images.map(
+    (path) => supabase.storage.from("special-offer-images").getPublicUrl(path).data.publicUrl,
+  );
+  return {
+    ...offer,
+    images,
+    image_urls: imageUrls,
+    image_url: imageUrls[0] ?? "",
+  };
+}
 
 export function useSpecialOffers(): OfferLoadState {
   const [state, setState] = useState<OfferLoadState>({
@@ -30,19 +49,7 @@ export function useSpecialOffers(): OfferLoadState {
           return;
         }
         setState({
-          offers: (data ?? []).filter(isOfferInDateRange).map((offer) => {
-            const images = getOfferImagePaths(offer);
-            const imageUrls = images.map(
-              (path) =>
-                supabase.storage.from("special-offer-images").getPublicUrl(path).data.publicUrl,
-            );
-            return {
-              ...offer,
-              images,
-              image_urls: imageUrls,
-              image_url: imageUrls[0] ?? "",
-            };
-          }),
+          offers: (data ?? []).filter(isOfferInDateRange).map(withOfferImageUrls),
           loading: false,
           error: null,
         });

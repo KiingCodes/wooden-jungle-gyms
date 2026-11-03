@@ -6,17 +6,17 @@ import { heroJungleGym } from "@/lib/site-data";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Us | Mzansi Jungle Gyms" },
+      { title: "About Us | Budget Jungle Gyms" },
       {
         name: "description",
         content:
-          "Learn the story behind Mzansi Jungle Gyms — handcrafted wooden play equipment that brings families together outdoors.",
+          "Learn the story behind Budget Jungle Gyms — handcrafted wooden play equipment that brings families together outdoors.",
       },
-      { property: "og:title", content: "About Us | Mzansi Jungle Gyms" },
+      { property: "og:title", content: "About Us | Budget Jungle Gyms" },
       {
         property: "og:description",
         content:
-          "Learn the story behind Mzansi Jungle Gyms — handcrafted wooden play equipment that brings families together outdoors.",
+          "Learn the story behind Budget Jungle Gyms — handcrafted wooden play equipment that brings families together outdoors.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -49,7 +49,7 @@ function About() {
       <PageBand
         eyebrow="Our Story"
         title="Built for Childhood"
-        subtitle="Mzansi Wooden Jungle Gyms was started by Abel Seleka in 2005 with one aim. To put smiles on the faces of the children of Mzansi. Since then the company has grown in leaps and bounds. Mzansi Wooden Jungle gyms have done installations at schools, parks, nurseries, restaurants and 100's of private homes and flats."
+        subtitle="Budget Jungle Gyms was started by Abel Seleka in 2005 with one aim. To put smiles on the faces of the children of Mzansi. Since then the company has grown in leaps and bounds. Budget Jungle Gyms have done installations at schools, parks, nurseries, restaurants and 100's of private homes and flats."
       />
 
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
@@ -57,7 +57,7 @@ function About() {
           <div className="overflow-hidden rounded-3xl shadow-md">
             <img
               src={heroJungleGym}
-              alt="A Mzansi wooden jungle gym in a green backyard"
+              alt="A Budget wooden jungle gym in a green backyard"
               width={1920}
               height={1088}
               loading="lazy"

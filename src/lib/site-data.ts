@@ -10,7 +10,7 @@ export { aboutChild, heroJungleGym };
 export const CONTACT = {
   phoneDisplay: "+27 83 470 0443",
   phoneHref: "tel:+27834700443",
-  email: "play@mzansijunglegyms.co.za",
+  email: "play@budgetjunglegyms.co.za",
   address: "435 Aureole Ave, North Riding AH, Roodepoort, 2169",
   whatsappUrl: "https://wa.me/27834700443",
 };

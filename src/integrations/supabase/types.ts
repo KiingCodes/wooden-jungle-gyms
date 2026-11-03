@@ -65,8 +65,8 @@ export type Database = {
           description: string
           ends_at: string | null
           id: string
-          images: string[]
           image_path: string
+          images: string[]
           is_published: boolean
           regular_price: number
           special_price: number
@@ -79,8 +79,8 @@ export type Database = {
           description: string
           ends_at?: string | null
           id?: string
-          images?: string[]
           image_path: string
+          images?: string[]
           is_published?: boolean
           regular_price: number
           special_price: number
@@ -93,8 +93,8 @@ export type Database = {
           description?: string
           ends_at?: string | null
           id?: string
-          images?: string[]
           image_path?: string
+          images?: string[]
           is_published?: boolean
           regular_price?: number
           special_price?: number

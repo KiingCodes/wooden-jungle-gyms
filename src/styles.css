@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Mzansi Jungle Gyms — design system.
+ * Budget Jungle Gyms — design system.
  * Forest green primary, warm cream surfaces, light-green accents,
  * handwritten display type (Caveat) over friendly rounded body type (Quicksand).
  */
@@ -146,6 +146,27 @@
     color-mix(in oklab, var(--scrim) 18%, transparent) 68%,
     transparent 100%
   );
+}
+
+/* On small screens the hero copy spans the full width, so darken the lower
+   part of the photo as well to keep the text readable. */
+@media (max-width: 640px) {
+  .hero-shade {
+    background:
+      linear-gradient(
+        to top,
+        color-mix(in oklab, var(--scrim) 60%, transparent) 0%,
+        color-mix(in oklab, var(--scrim) 25%, transparent) 45%,
+        transparent 65%
+      ),
+      linear-gradient(
+        90deg,
+        color-mix(in oklab, var(--scrim) 90%, transparent) 0%,
+        color-mix(in oklab, var(--scrim) 60%, transparent) 38%,
+        color-mix(in oklab, var(--scrim) 18%, transparent) 68%,
+        transparent 100%
+      );
+  }
 }
 
 /* Dark gradient rising from the bottom of product cards. */

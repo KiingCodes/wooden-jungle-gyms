@@ -11,17 +11,17 @@ export const Route = createFileRoute("/quote")({
   },
   head: () => ({
     meta: [
-      { title: "Get a Quote | Mzansi Jungle Gyms" },
+      { title: "Get a Quote | Budget Jungle Gyms" },
       {
         name: "description",
         content:
-          "Request a free quote for your Mzansi wooden jungle gym tailored to your space, your style and your kids.",
+          "Request a free quote for your Budget wooden jungle gym tailored to your space, your style and your kids.",
       },
-      { property: "og:title", content: "Get a Quote | Mzansi Jungle Gyms" },
+      { property: "og:title", content: "Get a Quote | Budget Jungle Gyms" },
       {
         property: "og:description",
         content:
-          "Request a free quote for your Mzansi wooden jungle gym tailored to your space, your style and your kids.",
+          "Request a free quote for your Budget wooden jungle gym tailored to your space, your style and your kids.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

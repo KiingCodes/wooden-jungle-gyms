@@ -7,17 +7,17 @@ import { CONTACT } from "@/lib/site-data";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact Us | Mzansi Jungle Gyms" },
+      { title: "Contact Us | Budget Jungle Gyms" },
       {
         name: "description",
         content:
-          "Get in touch with Mzansi Jungle Gyms — request a quote, ask a question or visit our workshop.",
+          "Get in touch with Budget Jungle Gyms — request a quote, ask a question or visit our workshop.",
       },
-      { property: "og:title", content: "Contact Us | Mzansi Jungle Gyms" },
+      { property: "og:title", content: "Contact Us | Budget Jungle Gyms" },
       {
         property: "og:description",
         content:
-          "Get in touch with Mzansi Jungle Gyms — request a quote, ask a question or visit our workshop.",
+          "Get in touch with Budget Jungle Gyms — request a quote, ask a question or visit our workshop.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

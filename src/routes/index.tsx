@@ -20,14 +20,14 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       {
-        title: "Mzansi Jungle Gyms | Wooden Jungle Gyms, Playsets & Swings",
+        title: "Budget Jungle Gyms | Wooden Jungle Gyms, Playsets & Swings",
       },
       {
         name: "description",
         content:
           "Beautifully crafted wooden jungle gyms designed to inspire active play, build confidence and create unforgettable childhood moments.",
       },
-      { property: "og:title", content: "Mzansi Jungle Gyms | Real Play. Lasting Memories." },
+      { property: "og:title", content: "Budget Jungle Gyms | Real Play. Lasting Memories." },
       {
         property: "og:description",
         content:
@@ -61,10 +61,10 @@ function Index() {
       <section className="relative">
         <img
           src={heroJungleGym}
-          alt="Children playing on a wooden jungle gym with a green slide and swings in a lush backyard"
-          width={1920}
-          height={1088}
-          className="h-[420px] w-full object-cover object-right sm:h-[400px] lg:h-[420px]"
+          alt="Colourful jungle gym with swings, slides and a climbing ladder on a sunny playground"
+          width={1600}
+          height={1200}
+          className="h-[420px] w-full object-cover object-center sm:h-[400px] lg:h-[420px]"
         />
         <div className="hero-shade absolute inset-0" aria-hidden />
         <div className="absolute inset-0 flex items-center">
@@ -107,7 +107,7 @@ function Index() {
       </section>
 
       {/* ============ Features strip ============ */}
-      <section aria-label="Why choose Mzansi" className="-mt-11 bg-cream pb-14 pt-14 sm:-mt-12">
+      <section aria-label="Why choose Budget Jungle Gyms" className="-mt-11 bg-cream pb-14 pt-14 sm:-mt-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-0 lg:grid-cols-4">
             {FEATURES.map(({ icon: Icon, title, text }, i) => (

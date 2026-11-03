@@ -4,6 +4,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import type { Session } from "@supabase/supabase-js";
 import { PageBand } from "@/components/site/page-band";
 import { supabase } from "@/integrations/supabase/client";
+import { withOfferImageUrls } from "@/hooks/use-special-offers";
 import {
   discountPercent,
   formatZar,
@@ -63,7 +64,7 @@ function draftFromOffer(offer: SpecialOffer): OfferDraft {
 export const Route = createFileRoute("/admin")({
   head: () => ({
     meta: [
-      { title: "Specials Admin | Mzansi Jungle Gyms" },
+      { title: "Specials Admin | Budget Jungle Gyms" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
@@ -180,7 +181,7 @@ function Admin() {
           console.error("Could not load special offers for admin:", error);
           return;
         }
-        setOffers(data ?? []);
+        setOffers((data ?? []).map(withOfferImageUrls));
       });
 
     return () => {
@@ -341,7 +342,7 @@ function Admin() {
       description: draft.description.trim(),
       regular_price: regularPrice,
       special_price: specialPrice,
-      image_path: imagePaths[0],
+      image_path: imagePaths[0] ?? "",
       images: imagePaths,
       is_published: draft.isPublished,
       starts_at: draft.startsAt || null,
@@ -374,7 +375,7 @@ function Admin() {
 
     const oldOffer = offers.find((offer) => offer.id === editingId);
     setOffers((current) => [
-      result.data,
+      withOfferImageUrls(result.data),
       ...current.filter((offer) => offer.id !== result.data.id),
     ]);
     setSaving(false);
@@ -658,7 +659,7 @@ function Admin() {
                         src={
                           supabase.storage
                             .from(IMAGE_BUCKET)
-                            .getPublicUrl(getOfferImagePaths(offer)[0]).data.publicUrl
+                            .getPublicUrl(getOfferImagePaths(offer)[0] ?? "").data.publicUrl
                         }
                         alt=""
                         className="h-28 w-full rounded-xl object-cover sm:w-36"
