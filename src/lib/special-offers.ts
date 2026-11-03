@@ -1,4 +1,4 @@
-export interface SpecialOffer {
+export interface SpecialOfferRow {
   id: string;
   title: string;
   description: string;
@@ -6,13 +6,16 @@ export interface SpecialOffer {
   special_price: number;
   image_path: string;
   images: string[];
-  image_url: string;
-  image_urls: string[];
   is_published: boolean;
   starts_at: string | null;
   ends_at: string | null;
   created_at: string;
   updated_at: string;
+}
+
+export interface SpecialOffer extends SpecialOfferRow {
+  image_url: string;
+  image_urls: string[];
 }
 
 export type DescriptionBlock =
@@ -40,14 +43,14 @@ export function parseOfferDescription(description: string): DescriptionBlock[] {
 
     const bullet = line.match(/^(?:[•*-])\s+(.+)$/);
     if (bullet) {
-      listItems.push(bullet[1]);
+      listItems.push(bullet[1] ?? line);
       continue;
     }
 
     flushList();
     const heading = line.match(/^#{1,3}\s+(.+)$/) ?? line.match(/^(.+):$/);
     blocks.push(
-      heading ? { type: "heading", text: heading[1] } : { type: "paragraph", text: line },
+      heading ? { type: "heading", text: heading[1] ?? line } : { type: "paragraph", text: line },
     );
   }
 
