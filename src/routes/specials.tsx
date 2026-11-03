@@ -7,7 +7,7 @@ import { useSpecialOffers } from "@/hooks/use-special-offers";
 export const Route = createFileRoute("/specials")({
   head: () => ({
     meta: [
-      { title: "Special Offers | Mzansi Jungle Gyms" },
+      { title: "Special Offers | Budget Jungle Gyms" },
       {
         name: "description",
         content: "Discover current special offers on handcrafted wooden jungle gyms.",

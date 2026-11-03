@@ -11,17 +11,17 @@ export const Route = createFileRoute("/gallery")({
   },
   head: () => ({
     meta: [
-      { title: "Gallery | Mzansi Jungle Gyms" },
+      { title: "Gallery | Budget Jungle Gyms" },
       {
         name: "description",
         content:
-          "Browse photos of Mzansi wooden jungle gyms, playsets, towers and swing sets installed in real backyards.",
+          "Browse photos of Budget wooden jungle gyms, playsets, towers and swing sets installed in real backyards.",
       },
-      { property: "og:title", content: "Gallery | Mzansi Jungle Gyms" },
+      { property: "og:title", content: "Gallery | Budget Jungle Gyms" },
       {
         property: "og:description",
         content:
-          "Browse photos of Mzansi wooden jungle gyms, playsets, towers and swing sets installed in real backyards.",
+          "Browse photos of Budget wooden jungle gyms, playsets, towers and swing sets installed in real backyards.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -72,7 +72,7 @@ function Gallery() {
       <PageBand
         eyebrow="Our Work"
         title="Gallery"
-        subtitle="A glimpse of the adventures we've built — real Mzansi jungle gyms in real backyards."
+        subtitle="A glimpse of the adventures we've built — real Budget jungle gyms in real backyards."
       />
 
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6">

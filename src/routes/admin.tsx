@@ -63,7 +63,7 @@ function draftFromOffer(offer: SpecialOffer): OfferDraft {
 export const Route = createFileRoute("/admin")({
   head: () => ({
     meta: [
-      { title: "Specials Admin | Mzansi Jungle Gyms" },
+      { title: "Specials Admin | Budget Jungle Gyms" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),

@@ -18,7 +18,7 @@ export function Footer() {
           <Link
             to="/"
             className="flex justify-center lg:justify-start"
-            aria-label="Mzansi Jungle Gyms home"
+            aria-label="Budget Jungle Gyms home"
           >
             <img
               src={logoIcon}
@@ -61,7 +61,7 @@ export function Footer() {
       </div>
       <div className="border-t border-forest-foreground/15">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-3 text-xs text-forest-foreground/60 sm:flex-row sm:px-6">
-          <p>© {new Date().getFullYear()} Mzansi Jungle Gyms. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Budget Jungle Gyms. All rights reserved.</p>
           <Link
             to="/admin"
             className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 transition-colors hover:bg-forest-foreground/10 hover:text-forest-foreground"
