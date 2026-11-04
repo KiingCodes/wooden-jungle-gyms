@@ -13,7 +13,8 @@ import {
 } from "lucide-react";
 import { CategoryCard } from "@/components/site/category-card";
 import { HomeSpecialOffers } from "@/components/site/special-offers";
-import { CATEGORIES, CONTACT, aboutChild, heroJungleGym } from "@/lib/site-data";
+import aboutAnime from "@/assets/about-anime.jpg";
+import { CATEGORIES, CONTACT, heroJungleGym } from "@/lib/site-data";
 import leafDecor from "@/assets/leaf-decor.png";
 
 export const Route = createFileRoute("/")({
@@ -177,7 +178,7 @@ function Index() {
           {/* Photo bleeding to the left edge on desktop */}
           <div className="overflow-hidden lg:rounded-r-3xl">
             <img
-              src={aboutChild}
+              src={aboutAnime}
               alt="A happy child playing inside a wooden jungle gym"
               width={1024}
               height={768}
