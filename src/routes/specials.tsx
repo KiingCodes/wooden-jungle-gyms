@@ -12,7 +12,16 @@ export const Route = createFileRoute("/specials")({
         name: "description",
         content: "Discover current special offers on handcrafted wooden jungle gyms.",
       },
+      { property: "og:title", content: "Special Offers | Budget Jungle Gyms" },
+      {
+        property: "og:description",
+        content: "Discover current special offers on handcrafted wooden jungle gyms.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/specials" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "/specials" }],
   }),
   component: Specials,
 });

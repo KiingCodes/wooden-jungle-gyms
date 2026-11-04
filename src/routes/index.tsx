@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { CategoryCard } from "@/components/site/category-card";
 import { HomeSpecialOffers } from "@/components/site/special-offers";
-import { CATEGORIES, aboutChild, heroJungleGym } from "@/lib/site-data";
+import { CATEGORIES, CONTACT, aboutChild, heroJungleGym } from "@/lib/site-data";
 import leafDecor from "@/assets/leaf-decor.png";
 
 export const Route = createFileRoute("/")({
@@ -34,7 +34,47 @@ export const Route = createFileRoute("/")({
           "Beautifully crafted wooden jungle gyms designed to inspire active play, build confidence and create unforgettable childhood moments.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "/" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Budget Jungle Gyms",
+          url: "https://budgetjunglegyms.co.za/",
+          telephone: "+27834700443",
+          email: CONTACT.email,
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "435 Aureole Ave, North Riding AH",
+            addressLocality: "Roodepoort",
+            postalCode: "2169",
+            addressCountry: "ZA",
+          },
+          contactPoint: [
+            {
+              "@type": "ContactPoint",
+              telephone: "+27834700443",
+              contactType: "sales",
+              areaServed: "ZA",
+              availableLanguage: ["English"],
+            },
+          ],
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Budget Jungle Gyms",
+          url: "https://budgetjunglegyms.co.za/",
+        }),
+      },
     ],
   }),
   component: Index,

@@ -19,8 +19,10 @@ export const Route = createFileRoute("/jungle-gyms")({
           "Explore our range of handcrafted wooden jungle gyms: classic playsets, adventure towers, custom builds and accessories.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "/jungle-gyms" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "/jungle-gyms" }],
   }),
   component: JungleGyms,
 });
