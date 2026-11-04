@@ -19,8 +19,10 @@ export const Route = createFileRoute("/about")({
           "Learn the story behind Budget Jungle Gyms — handcrafted wooden play equipment that brings families together outdoors.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "/about" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "/about" }],
   }),
   component: About,
 });

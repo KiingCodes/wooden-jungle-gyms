@@ -89,6 +89,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content: "Handcrafted wooden jungle gyms, playsets and swings.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Budget Jungle Gyms" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [

@@ -20,8 +20,10 @@ export const Route = createFileRoute("/contact")({
           "Get in touch with Budget Jungle Gyms — request a quote, ask a question or visit our workshop.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "/contact" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "/contact" }],
   }),
   component: Contact,
 });

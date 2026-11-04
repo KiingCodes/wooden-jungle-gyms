@@ -24,8 +24,10 @@ export const Route = createFileRoute("/quote")({
           "Request a free quote for your Budget wooden jungle gym tailored to your space, your style and your kids.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "/quote" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "/quote" }],
   }),
   component: Quote,
 });

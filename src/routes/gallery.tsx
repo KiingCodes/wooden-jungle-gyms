@@ -24,8 +24,10 @@ export const Route = createFileRoute("/gallery")({
           "Browse photos of Budget wooden jungle gyms, playsets, towers and swing sets installed in real backyards.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "/gallery" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "/gallery" }],
   }),
   component: Gallery,
 });
