@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useRef } from "react";
 import {
   Activity,
   ChevronRight,
@@ -96,6 +97,36 @@ const BENEFITS: { icon: LucideIcon; title: string; rest: string }[] = [
 ];
 
 function Index() {
+  const featuresRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const section = featuresRef.current;
+    if (!section) return;
+
+    const featureItems = section.querySelectorAll<HTMLElement>(".feature-reveal");
+    section.classList.add("feature-reveals-ready");
+
+    if (typeof IntersectionObserver === "undefined") {
+      featureItems.forEach((item) => item.classList.add("is-revealed"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-revealed");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.18, rootMargin: "0px 0px -32px 0px" },
+    );
+
+    featureItems.forEach((item) => observer.observe(item));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       {/* ============ Hero ============ */}
@@ -111,21 +142,21 @@ function Index() {
         <div className="absolute inset-0 flex items-center">
           <div className="mx-auto w-full max-w-7xl px-4 sm:px-6">
             <div className="max-w-xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-leaf sm:text-sm">
+              <p className="hero-enter hero-enter-1 text-xs font-semibold uppercase tracking-[0.3em] text-leaf sm:text-sm">
                 Wooden Jungle Gyms
               </p>
-              <h1 className="mt-3 font-display text-5xl leading-[1.05] sm:text-6xl lg:text-7xl">
+              <h1 className="hero-enter hero-enter-2 mt-3 font-display text-5xl leading-[1.05] sm:text-6xl lg:text-7xl">
                 <span className="text-white">Real Play.</span>
                 <br />
                 <span className="text-leaf">Lasting Memories.</span>
               </h1>
-              <p className="mt-4 max-w-md text-sm leading-relaxed text-white/90 sm:text-base">
+              <p className="hero-enter hero-enter-3 mt-4 max-w-md text-sm leading-relaxed text-white/90 sm:text-base">
                 Beautifully crafted wooden jungle gyms, designed to inspire active play, build
                 confidence and create unforgettable childhood moments.
               </p>
               <Link
                 to="/jungle-gyms"
-                className="mt-7 inline-flex items-center gap-2 rounded-full bg-leaf px-6 py-3 text-sm font-semibold text-leaf-foreground shadow-md transition-all hover:bg-leaf/90 hover:shadow-lg sm:text-base"
+                className="hero-enter hero-enter-4 hero-cta mt-7 inline-flex items-center gap-2 rounded-full bg-leaf px-6 py-3 text-sm font-semibold text-leaf-foreground shadow-md transition-all hover:bg-leaf/90 hover:shadow-lg sm:text-base"
               >
                 Explore Our Jungle Gyms
                 <ChevronRight size={18} />
@@ -148,13 +179,13 @@ function Index() {
       </section>
 
       {/* ============ Features strip ============ */}
-      <section aria-label="Why choose Budget Jungle Gyms" className="-mt-11 bg-cream pb-14 pt-14 sm:-mt-12">
+      <section ref={featuresRef} aria-label="Why choose Budget Jungle Gyms" className="-mt-11 bg-cream pb-14 pt-14 sm:-mt-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-0 lg:grid-cols-4">
             {FEATURES.map(({ icon: Icon, title, text }, i) => (
               <div
                 key={title}
-                className={`flex flex-col items-center px-6 text-center ${
+                className={`feature-reveal flex flex-col items-center px-6 text-center ${
                   i > 0 ? "sm:border-l sm:border-primary/15" : ""
                 }`}
               >
