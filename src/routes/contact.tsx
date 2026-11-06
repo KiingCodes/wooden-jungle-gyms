@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { Clock, MapPin, Phone } from "lucide-react";
 import { PageBand } from "@/components/site/page-band";
 import { QuoteForm } from "@/components/site/quote-form";
 import { CONTACT } from "@/lib/site-data";
@@ -36,14 +36,6 @@ const CARDS = [
     line2: "Mon–Fri, 08:00–17:00",
     href: CONTACT.phoneHref,
     linkLabel: `Call ${CONTACT.phoneDisplay}`,
-  },
-  {
-    icon: Mail,
-    title: "Email Us",
-    line1: CONTACT.email,
-    line2: "We reply within one business day",
-    href: `mailto:${CONTACT.email}`,
-    linkLabel: `Email ${CONTACT.email}`,
   },
   {
     icon: MapPin,
